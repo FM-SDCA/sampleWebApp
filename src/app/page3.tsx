@@ -39,13 +39,16 @@ export default function Page3() {
         setSelectedRow(null);
         setImageSrc('');
     };
-
+    
     const handleImageClick = () => {
-        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-        if (fileInput) {
+        if (typeof window !== 'undefined') { // クライアントサイドでのみ実行
+          const fileInput = document.getElementById('fileInput') as HTMLInputElement | null;
+          if (fileInput) {
             fileInput.click();
+          }
         }
-    };
+      };
+      
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return;
